@@ -1,2 +1,3 @@
 name: Algorithmic adventures
 markdown kramdown
+permalink: /blog/:year/:month/:day/:title
