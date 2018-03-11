@@ -1,4 +1,5 @@
 name: Algorithmic adventures
 markdown: kramdown
-highlighter: rouge
+  input: GFM
+  syntax_highlighter: rouge
 permalink: /blog/:year/:month/:day/:title
