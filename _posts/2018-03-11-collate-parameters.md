@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Collating keywords"
+title:  "Collating parameters"
 date:   2018-03-11 13:36:13 +0000
 categories: python
 ---
@@ -450,7 +450,7 @@ We can see that the `power` parameter is replaced with `NaN`-s, where it is not 
 
 The apt reader have surely recognsised that Solutions 1. and 2. were subclasses of the one discussed here. 
 
-### 4. solution: `get_params`, dictionary and `pandas dataframe` (quick, remarkable personal hygiene)
+### 4. solution: `get_params()`, dictionary and `pandas dataframe` (quick, remarkable personal hygiene)
 
 The `scikit-learn` estimators, classifiers _etc._ usually have a built in `get_params()` method that retrieves all of the parameters. This can be used in conjuction with the method above. In the following example we try to estimate down the minimum required number of runs and iterations to minimse stress in multidimensional scaling. (_N.B._ obviously, one might wish to cross-validate these results.)
 
@@ -616,4 +616,4 @@ plt.show()
 
 ### Summary
 
-In this post we have designed a couple of generic frameworks to collate keyword parameters of a function and its result. They based on grouping the parameters and results in an intermediary data objects, such as list of dictionaries, then injecting these group to a single keyable data structure
+In this post we have designed a couple of generic frameworks to collate keyword parameters of a function and its result. They based on grouping the parameters and results in an intermediary data objects, such as list of dictionaries, then injecting these groups to a single keyable data structure.
