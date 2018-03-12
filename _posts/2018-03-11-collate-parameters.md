@@ -5,8 +5,6 @@ date:   2018-03-11 13:36:13 +0000
 categories: python
 ---
 
-# Collating Keywords
-
 ## Aim
 
 In this post we are going explore the possibilities of collating the input parameters and results of function to make summary tables or plots. We are aiming to write a small utility that does this task for us.
@@ -478,7 +476,7 @@ param_dict = { 'max_iter' : [10, 100, 300, 500],
 
 param_grid = ParameterGrid(param_dict)
 
-# instantantiate transformer
+# instantiate transformer
 mds = MDS()
 
 # explore parameter space
