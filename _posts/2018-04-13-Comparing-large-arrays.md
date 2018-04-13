@@ -383,6 +383,7 @@ print(df.columns)
           dtype='object')
     
 The comparison of the timing of the various functions can be seen below. 
+
 ![png]({{"/assets/images/large_arrays_all_01.png"}})
 
 ![png]({{"/assets/images/large_arrays_all_02.png"}})
