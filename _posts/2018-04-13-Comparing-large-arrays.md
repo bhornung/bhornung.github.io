@@ -384,7 +384,7 @@ print(df.columns)
     
 The comparison of the timing of the various functions can be seen below. 
 
-![png]({{"/assets/images/large_arrays_all_01.png"}})
+![png]({{"/assets/images/large_arrays_native_python_01.png"}})
 
 ![png]({{"/assets/images/large_arrays_all_02.png"}})
 
@@ -393,6 +393,3 @@ It is of no surprise that the compiled function is the fastest for all sizes and
 ## Conclusions
 
 We wrote and compared native python and compiled utilities to label clusters. We have found that the compiled utility is superior to the native python ones. Whether to use it? I would argue that if efficiency is the most important desideratum of our program, one should never by shy to use the tools to achive it.
-
-![png](output_39_0.png)
-
