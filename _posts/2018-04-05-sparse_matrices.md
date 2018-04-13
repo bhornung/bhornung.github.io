@@ -11,7 +11,8 @@ In this post we write fast python functions to generate sparse block matrices.
 
 A sparse matrix is a matrix where most of its entries are zero. We will restrict our attention to block sparse matrices where there ne nonzero (_nnz_) entries are accumulated in blocks. A sample matrix looks like:
 
-$\begin{bmatrix}
+$$
+\begin{bmatrix}
     a & a & a & 0  &   & \cdots  &  & 0 \\
     a & a & a & 0  &   & \cdots &  & 0 \\
     a & a & a & 0  &   & \cdots  &  & 0 \\
@@ -19,7 +20,8 @@ $\begin{bmatrix}
     0 & 0 & 0 & b & b & 0 & \cdots & 0 \\
     0 & 0 & 0 & 0 & \cdots & 0 & 0 & 0 \\    
     \vdots   &   &   & \vdots & & & & \vdots 
-\end{bmatrix}$
+\end{bmatrix}
+$$
 
 The term large means the matrices have about $10^{4--7}$ columns. 
 
@@ -60,12 +62,12 @@ sparse_matrix.indptr = [0, 3, 5, 5, 5, ....]
 
 **Algorithm 1.1**
 
-$
+$$
 \begin{eqnarray}
    &1.& \text{create list of blocks as sparse matrices} \\
    &2.& \text{concatenate sparse matrices}
 \end{eqnarray}
-$
+$$
 
 We will generate the list of blocks in two ways
 
@@ -368,7 +370,7 @@ The patient reader is only asked to digest one more chunk of code. In the `creat
 
 **Algorithm 2**
 
-$
+$$
 \begin{eqnarray}
    &1.& size \leftarrow \text{sum of block sizes} \\
    &2.& \mathbf{A} \in \mathcal{R}^{size \times size}  \leftarrow \text{empty} \\
@@ -377,7 +379,7 @@ $
    &5.& \text{calculate } \mathbf{A}.indices \\
    &6.& \text{fill } \mathbf{A}.data
 \end{eqnarray}
-$
+$$
 
 In addition, the maximum temporary storage is always at most $N^{2}$, where $N$ is the number of columns in the largest block of the matrix.
 
