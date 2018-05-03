@@ -195,7 +195,7 @@ def calc_markov_entropy(mat):
 
 The entropies have been calculated for each inflation (even) and expansion (odd) steps for each of the above inflation parameters. 
 
-![jpg]({{"/assets/markov/entropy.jpg"}}){:height="500px" width="400px"}
+![jpg]({{"/assets/markov/entropy.jpg"}}){:height="500px" width="600px"}
 
 It is readily observed that the entropy increases during the expansion set and decreases following inflation. These changes gradually diminish as the matrix becomes idempotent. 
 
