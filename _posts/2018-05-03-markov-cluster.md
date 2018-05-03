@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Markov cluster algorithm"
-date:   2018-04-05 16:22:02 +0000
+date:   2018-05-03 16:22:02 +0000
 categories: python
 ---
 ## Motivation
@@ -154,13 +154,13 @@ print(mclus.labels_)
     [0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
     
 
-![jpg]({{"/assets/markov/blog_merged_3clus_p22m0802.png"}})
+![jpg]({{"/assets/markov/blog_merged_3clus_p22m0802.jpg"}}){:height="500px" width="500px"}
 
 Changing the inflation parameter changes the cluster structure. The lower the inflation parameter, that is the rate of removal of edges with lower weights the larger clusters we get.
 
 This effect on the final cluster sizes is illustrated on a larger set of inflation parameters: $q=[1.00, 1.20, 1.50, 2.00, 2.25, 3.00]$, below.
 
-![jpg]({{"/assets/markov/comparison_process.jpg"}}) 
+![jpg]({{"/assets/markov/comparison_process.jpg"}}){:height="500px" width="500px"} 
 
 ## Analysis
 
@@ -195,7 +195,7 @@ def calc_markov_entropy(mat):
 
 The entropies have been calculated for each inflation (even) and expansion (odd) steps for each of the above inflation parameters. 
 
-![jpg]({{"/assets/markov/entropy.jpg"}})
+![jpg]({{"/assets/markov/entropy.jpg"}}){:height="400px" width="400px"}
 
 It is readily observed that the entropy increases during the expansion set and decreases following inflation. These changes gradually diminish as the matrix becomes idempotent. 
 
