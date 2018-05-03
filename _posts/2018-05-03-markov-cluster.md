@@ -154,13 +154,13 @@ print(mclus.labels_)
     [0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
     
 
-![jpg]({{"/assets/markov/blog_merged_3clus_p22m0802.jpg"}}){:height="800px" width="800px"}
+![jpg]({{"/assets/markov/blog_merged_3clus_p22m0802.jpg"}}){:height="1200px" width="1200px"}
 
 Changing the inflation parameter changes the cluster structure. The lower the inflation parameter, that is the rate of removal of edges with lower weights the larger clusters we get.
 
 This effect on the final cluster sizes is illustrated on a larger set of inflation parameters: $q=[1.00, 1.20, 1.50, 2.00, 2.25, 3.00]$, below.
 
-![jpg]({{"/assets/markov/comparison_process.jpg"}}){:height="800px" width="800px"} 
+![jpg]({{"/assets/markov/comparison_process.jpg"}}){:height="1400px" width="1400px"} 
 
 ## Analysis
 
