@@ -36,13 +36,17 @@ A few remarks are in order:
 ### Repeated random steps
 
 The probability of ending up in state $i$ is proportional to the sum of the P(i|j) transition probabilities which is the sum of the $i$-th column. The probability of returning to the initial state after two steps is the dot product of the $i$-th column and row. (That is to say the probability of ending up in all $k$ states times the probability of going from all those states back to $i$.
+
 $$
 P(i\leftarrow \leftarrow i) = \sum\limits_{k} P(k|i)P(i|k)
 $$
+
 In general, the probability of going from $i$ to $j$ is proportional of the product of the corresponding row and column
+
 $$
 P(j|i) = \sum\limits_{k}w_{ik} w_{kj} \, ,
 $$
+
 which is just the matrix product. This step is called expansion intuitively enough.
 
 What do we expect? 
@@ -154,22 +158,24 @@ print(mclus.labels_)
     [0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
     
 
-![jpg]({{"/assets/markov/blog_merged_3clus_p22m0802.jpg"}}){:height="1200px" width="1200px"}
+![jpg]({{"/assets/markov/blog_merged_3clus_p22m0802.jpg"}}){:height="1000px" width="1000px"}
 
 Changing the inflation parameter changes the cluster structure. The lower the inflation parameter, that is the rate of removal of edges with lower weights the larger clusters we get.
 
 This effect on the final cluster sizes is illustrated on a larger set of inflation parameters: $q=[1.00, 1.20, 1.50, 2.00, 2.25, 3.00]$, below.
 
-![jpg]({{"/assets/markov/comparison_process.jpg"}}){:height="1400px" width="1400px"} 
+![jpg]({{"/assets/markov/comparison_process.jpg"}}){:height="1000px" width="1000px"} 
 
 ## Analysis
 
 Most of the clustering methods minimise a ceratian measure (_e.g._ variance of the intra-cluster distance in k-means clustering). However, it is not clear from above what functional of the graph is minimised during the MC algorithm. It is also curious that changing the rate of inflation changes the cluster structure.
 
 Nevertheless, one can show that the entropy is the Markov process, $S(\mathbf{P})$, is minimised.
+
 $$
 S(\mathbf{P}) = - \sum_{i} \mu_{i} \sum_{j} p_{ij}\log(p _{ij}) \, ,
 $$
+
 where $\mathbf{\mu}$ is the **left** eigenvector of the stochastic matrix.
 
 The function `calc_markov_entropy` calculates the entropy of the transition matrix _relative_ to the entropy of the process where each state has equal probability to move to any other states. The entropy is the corresponding process is $\log_{2}(n)$.
