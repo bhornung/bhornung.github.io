@@ -251,13 +251,13 @@ def colour_array_numba(idcs, iptr, labels):
 # skip if it is empty
         if n_nodes_in_cluster == 0: continue
 
-        inodes = idcs[iptr[i]:iptr[i]]
+        inodes = idcs[i_start:i_end]
 # if already coloured skip
         if labels[inodes[0]] != -1: 
           continue
         else:
 # assign colour
-          labels[idcs[i_start:i_end]] = i_label
+          labels[inodes] = i_label
           i_label += 1
 # keep track of coloured nodes
           n_coloured += n_nodes_in_cluster
