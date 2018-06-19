@@ -648,7 +648,7 @@ pg = pg / pg.sum(axis = 1)[:, None]
 
 The distributions for Azerbaijan, Central African Republic, Cameroon, Cape Verde, Bhutan, DR Congo, Belgium and The Netherlands are show below. It is readily observed the first six countries are easier to travel from as to how much paperwork is needed compared to the last two ones. A question then naturally arises whether are there groups of countries of similar requirement patterns?
 
-![png]({{"/assets/visas/images/output_61_0.png"}})
+![png]({{"/assets/visas/images/output_61_0.png"}}){:height="482px";width="800px";}
 
 
 As a start, we can now easily figure out which country has the most polar exit requirements. The term 'polar' means separated bimodal distribution:
@@ -669,7 +669,7 @@ overlap = np.linalg.norm(pg[:,None,:] - mask, axis = 2)
 bimodals = np.array([np.argsort(x)[:3] for x in overlap.T])
 ```
 
-![png]({{"/assets/visas/images/output_64_0.png"}})
+![png]({{"/assets/visas/images/output_64_0.png"}}){:height="646px" width="800px"}
 
 Each row of the plot above shows the three most polar distribution of requirements for the _via free_ - _visa required_, _visa free_ - _visa on arrival_ and _visa on arrival_ - _visa required_ pairings.  
 
@@ -684,7 +684,7 @@ $$
 ```python
 dist_mat = scd.squareform(scd.pdist(pg))
 ```
-![png]({{"/assets/visas/images/output_68_0.png"}})
+![png]({{"/assets/visas/images/output_68_0.png"}}){:height="355px" width="800px"}
 
 
 If  there are $n$ clusters of similar $P_{g}$-s, then the maximum number of peaks in the distance plot is 
@@ -732,12 +732,12 @@ stds = np.array([np.std(pg[_v], axis = 0) for _k, _v in clustaz.items()])
 
 The three groups correspond to the most welcomed ones, _e.g._ as those in the EU, welcomed ones, such as many Asian and African countries. The third groups consists of countries with strained international relationships (Armenia) or ones with serious internal conflicts (Syria).  
 
-![png]({{"/assets/visas/images/output_81_0.png"}})
+![png]({{"/assets/visas/images/output_81_0.png"}}){:height="346px" width="800px"}
 
 
 The dendrogram shows these clusters and the base distributions from which the distances were calculated, in anticlockwise order.
 
-![png]({{"/assets/visas/images/output_164_0.png"}})
+![png]({{"/assets/visas/images/output_164_0.png"}}){:height="800px" width="800px"}
 
 ## Mutual requirements
 
@@ -788,7 +788,7 @@ ax.set_xlabel("Req(i -->j)"); ax.set_ylabel("Req(j -->i)");
 plt.show()
 ```
 
-![png]({{"/assets/visas/images/output_86_0.png"}})
+![png]({{"/assets/visas/images/output_86_0.png"}}){:height="426px" width="500px"}
 
 
 The matrix is not symmetric meaning that there are pairs of countries which demand different travel documents depending on the direction of travel. The most popular mutual requirements are 
@@ -871,14 +871,14 @@ print(keep_idcs)
 
 Only six components are retained out of sixty four. It is inetersting to see that most of the linear relationships involve the _visa required_ restriction. For example, the first component (top left corner) indicates that a pair of countries either has (_visa required_, _visa on arrival_) **xor** (_visa required_, _visa required_) mutual requirements.
 
-![png]({{"/assets/visas/images/output_96_0.png"}})
+![png]({{"/assets/visas/images/output_96_0.png"}}){:height="508px" width="800px"}
 
 
 ### Clustering
 
 It would be interesting to see whether there are clusters formed around certain reciprocity patterns. First of all, a dissimilarity measure is needed. Taking the $L_{2}$ overlap of  the reciprocity distributions can be misleading. For example, consider the following three distributions below:
 
-![png]({{"/assets/visas/images/output_98_0.png"}})
+![png]({{"/assets/visas/images/output_98_0.png"}}){:height="346px" width="800px"}
 
 
 The $L_{p}$ distances between any two distributions are equal. However, we feel that **(1)** is closer to **(2)** than  to **(3)** for _visa free_ is closer to _ETA_ than to _visa required_. In general, when comparing probability distributions over ordered categorical variables it is advantageous to use a distance that represets the underlying ordering. One such function is the [_earth mover's distance_](https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/rubner-jcviu-00.pdf) (EMD) or [_Wasserstein metric_](https://en.wikipedia.org/wiki/Wasserstein_metric). It is the minimum work required to move one distribution to match and other one, in a nutshell. Before we calculate EMDs for the countries two notes are in order:
@@ -988,11 +988,11 @@ clustaz_ = split_at_n_top(Z_emd, 5)
 means_ = np.array([np.mean(cnt_recip_mat[_v], axis = 0) for _k, _v in clustaz_.items()])
 ```
 
-![png]({{"/assets/visas/images/output_120_0.png"}})
+![png]({{"/assets/visas/images/output_120_0.png"}}){:height="570px" width="800px"}
 
 The dendrogram of the five clusters is shown below in anticloskwise order.
 
-![png]({{"/assets/visas/images/output_165_0.png"}})
+![png]({{"/assets/visas/images/output_165_0.png"}}){:height="800px" width="800px"}
 
 ### Asymmetry 
 
@@ -1003,7 +1003,7 @@ Next, we calculate the conditional distribution of requirements with respect to 
 p_recip_mat = recip_mat / np.sum(recip_mat, axis = 0)
 ```
 
-![png]({{"/assets/visas/images/output_125_0.png"}})
+![png]({{"/assets/visas/images/output_125_0.png"}}){:height="470px" width="800px"}
 
 
 From these probability plots one can deduce that _visa free_ and _visa on arrival_ requirements are the mostly reciprocated ($p_{0,0}= 0.7, p_{7,7} = 0.55$). Countries also tend to mutually bar each other's citizen's ($p_{8,8} = 0.95$). At least there is something they agree on. 
@@ -1134,7 +1134,7 @@ df_cnt_stats.sort_values(by=['signed'])[['name', 'signed', 'unsigned']].tail(3)
 
 The sorted scores are shown below. The flatter regions indicate that numerous countries have similar asymmetric relations. However, looking at just $A_{us}$ and $A_{sg}$ does tell us whether the asymmetries of different signs compensate each other or a country has symmetric relationships.
 
-![png]({{"/assets/visas/images/output_134_0.png"}})
+![png]({{"/assets/visas/images/output_134_0.png"}}){:height="203px" width="800px"}
 
 
 A joint plot of $A_{us}$ and $A_{sg}$ can resolve this issue.  The more asymmetric a country is  the more likely it is more less welcomed then welcoming. These countries constitute top left cluster. If a country has symmetric relationships, ($A_{us}$) close to zero, it is likely to be less welcoming than welcomed according to the grouping in the bottom right corner.
@@ -1181,12 +1181,12 @@ cliques_vf = find_colour_max_cliques(V,0)
 
 The blocks are then printed on a circular layout where each node correspond to a country, and each edge represents a mutual _visa free_ requirement. Largest one consists of the Schengen/EEA/European microstates and numerous South American countries. Several Central American (plus a few African) states constitute the second largest group. The ECOWAS member states made up the third block. In general, countries of geopolitical proximity tend to form cliques. However, all connections in a clique should be _visa free_ therefore even one asymmetric relationship can remove an otherwise perfectly connected country. A fine example is Russia, which requires visa from some of the Central Asian republics, therefore it is cannot be in the mainly post Soviet fourth block.
 
-![png]({{"/assets/visas/images/output_146_0.png"}})
+![png]({{"/assets/visas/images/output_146_0.png"}}){:height="273px" width="800px"}
 
 
 The original matrix, $V$ **(1)** shows no apparent structure. When countries are reordered, the blocks appear along the diagonal. Off-diagonal blocks can also be spotted where the requirements are dominated by a certain category. This is amplified is the mode of each block is plotted **(c)**. The largest _visa free_ clique comprises European and South American countries. Again, it is easier to travel from than to travel to these countries as the leftmost and topmost bands suggests.
 
-![png]({{"/assets/visas/images/output_152_0.png"}})
+![png]({{"/assets/visas/images/output_152_0.png"}}){:height="355px" width="800px"}
 
 
 ### Requirement similarity
@@ -1255,5 +1255,5 @@ scores = np.fromiter(score_gen, dtype = np.float)
 Again a geopolitical segmentation is readily observed most strikingly in the cases of post Soviet and African states.
 
 
-![png]({{"/assets/images/visas/output_166_0.png"}})
+![png]({{"/assets/images/visas/output_166_0.png"}}){:height="800px" width="800px"}
 
