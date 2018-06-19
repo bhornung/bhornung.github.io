@@ -6,7 +6,7 @@ categories: python
 ---
 
 
-We are going to explore the entry requirements to visit a country across the globe. We will find out how easy or difficult to travel from one country from an other. Which are most welcoming and reclusive nation according to what kind of travel documents they demand on entering their territories.
+We are going to explore the entry requirements to visit a country across the globe. We will find out how easy or difficult to travel from one country to an other; which are most welcoming or reclusive nation according to what kind of travel documents they demand on entering their territories.
 
 
 ## Preliminaries
@@ -39,7 +39,8 @@ from sklearn.preprocessing import normalize
 ```
 
 ### Utility functions 
-A handful of helper functions are defined.
+
+Firstly, a handful of helper functions are defined:
 
 
 ```python
@@ -100,13 +101,14 @@ For example, the `most_common` function would look like
 most_common = lambda x: Counter(x).most_common(1)[0][0]
 ```
 
-In some cases, the code snippets are modestly interesting, hence they are hidden from this post. The raw jupyter notebook can be found here, which contains all of the code used to process the data.
+In some cases, the code snippets are modestly interesting, hence they are hidden from this post. The raw jupyter notebook can be found [here](https://github.com/bhornung/bhornung.github.io/blob/master/assets/visas/notebook/visa_anal.ipynb), which contains all the code used to process the data.
 
 ### Graphs
-If the script to generate a plot is not particularly insightful it will be omitted. Again, they all can be found here.
+
+If a script used to generate a plot is not particularly insightful it will be omitted. Again, they all can be found [here](https://github.com/bhornung/bhornung.github.io/blob/master/assets/visas/notebook/visa_anal.ipynb).
 
 ## Data collection
-The data was collected from the most excellent website [passportindex.org](https://passportindex.org). I would encourage everyone to have a look at the site; one can learn about the (geo)political relationships between countries in a reall entertaining way.
+The data was collected from the most excellent website [passportindex.org](https://passportindex.org). I would encourage everyone to have a look at the site; one can learn about the (geo)political relationships between countries in a really entertaining way.
 
 ## Preparing the data
 
@@ -116,7 +118,7 @@ The database is loaded from a `json` storage.
 
 
 ```python
-path_to_visa_json_db = r'C:\Users\Balazs\Desktop\bhornung_movies\yemen2018\visa\visa_by_country.json'
+path_to_visa_json_db = r'path/to/visa_by_country.json'
 df_visa = load_df_from_json(path_to_visa_json_db)
 df_visa.head(3)
 ```
@@ -232,7 +234,7 @@ df_visa.head(3)
 
 
 
-The row indices or labels, denote the countries whose citizens are travelling to the countries enumerated in the columns. For example, the (AD, AL) = _visa free_ entry tells us that the citizens of Andorra are granted _visa free_ entry to Albania. A **guest** country is the country one travels from, whereas a **host** country is the country one travels to.  
+The row indices or labels, denote the countries whose citizens are traveling to the countries enumerated in the columns. For example, the (AD, AL) = _visa free_ entry tells us that the citizens of Andorra are granted _visa free_ entry to Albania. A **guest** country is the country one travels from, whereas a **host** country is the country one travels to.  
 
 ### Cleaning the data
 
@@ -310,7 +312,7 @@ print("Countries with 'visitor’s permit' {0}".format(countries))
 
 It is worth noting the Seychelles offers universal visa free entry, hence its entries ought to be changed to _visa free_.
 
-The most interesting term _Visa waiver on arrival_ provided to certain national travelling to Qatar is in practice equivalent to _visa free_ travel. It will thus be relabelled as such:
+The most interesting term _Visa waiver on arrival_ provided to certain national traveling to Qatar is in practice equivalent to _visa free_ travel. It will thus be relabeled as such:
 
 
 ```python
@@ -369,7 +371,7 @@ The cleaned data are then saved.
 
 
 ```python
-path_to_visa_clean_db = r'C:\Users\Balazs\Desktop\bhornung_movies\yemen2018\visa_by_country_clean.json'
+path_to_visa_clean_db = r'path/to/visa_by_country_clean.json'
 df_visa.to_json(path_to_visa_clean_db, orient = 'index')
 ```
 
@@ -379,7 +381,7 @@ There is wide range of possibilities to explore. If the reader is interested in 
 
 #### Encoding
 
-We are dealing with categorical values therefore one can assign an integer number to each category. They are also ordered, in a sense, based on how restricted the entry to a certain country is. One can attemp to create a mapping that represents the various levels of freedom. Albeit, it will be slightly subjective.
+We are dealing with categorical values therefore one can assign an integer number to each category. They are also ordered, in a sense, based on how restricted the entry to a certain country is. One can attempt to create a mapping that represents the various levels of freedom. Albeit, it will be slightly subjective.
 
 
 ```python
@@ -400,7 +402,7 @@ This mapping is applied to the clean database:
 
 
 ```python
-path_to_visa_clean_db = r'C:\Users\Balazs\Desktop\bhornung_movies\yemen2018\visa_by_country_clean.json'
+path_to_visa_clean_db = r'path/to/visa_by_country_clean.json'
 df_visa_clean = load_df_from_json(path_to_visa_clean_db)
 df_visa_clean.replace(requirement_order_map, inplace = True)
 ```
@@ -438,7 +440,7 @@ It is worth introducing the following terminology and notation.
 
     $V \in C^{n_{g} \times n_{g}}  \iff V_{ij} \in C$, where the first index, $i$, in the guest country the second index, $j$, is the host country. $V$ is symmetric only if each pair of countries have reciprocal entry requirements.
    
-* The _i_-th row of $V$ is denoted by $v_{i,*}$ which represents the entry requriments for a citizen of country _i_. Likewise,
+* The _i_-th row of $V$ is denoted by $v_{i,*}$ which represents the entry requirements for a citizen of country _i_. Likewise,
 * The _i_-th column of $V$ is denoted by $v_{*,i}$ which represents requirements demanded by country _j_  
 
 
@@ -456,7 +458,7 @@ The entropy, $H$ measures the information content or randomness of a distributio
 $$
 H(C) = \sum\limits_{i=1}^{|C|} - p(c_{i}) \log(p(c_{i})) \text{,  where}
 $$
-$p$ is the probabiblity density function of $C$.
+$p$ is the probability density function of $C$.
 
 Should all countries have random requirements, the entropy would be maximal for the entire table and for each country:
 $$
@@ -493,7 +495,7 @@ print("Entropy of requirements for all countries: {0:5.3f}".format(overall_entro
 
 The joint distribution of the host and guest entropies are shown below. (I prefer to use scatter plot along with kde-type plots as the latter ones can be misleading sometimes, especially violin plots.)
 
-![png]({{"/assets/images/visas/output_46_0.png"}})
+![png]({{"/assets/visas/images/output_46_0.png"}})
 
 
 It is immediately seen that countries do not have random requirements, for the maximum entropy is around 0.4. On the contrary, each country is biased towards certain requirements. The guest entropy never hits its lower bound, indicating each country has at least two exit requirements. The countries whose host requirement is zero demand the same documents from all incoming citizens. There are around ten of them. However, the entropy _does not_ state anything about the _values_ of the random variate. A quick sorting (pun intended) tells which ones these are.
@@ -620,10 +622,10 @@ sg = (V.sum(axis = 1) + 1) / (ng - 1)
 
 The score distribution is shown below. 
 
-![png]({{"/assets/images/visas/output_55_0.png"}})
+![png]({{"/assets/visas/images/output_55_0.png"}})
 
 
-The histogram of the host and guest score plot hints at three major types of mutual relationships. Agglomerate of countries in the upper right corner indicates mutally restricted entry criteria. The bottom middle region of the graph groups countries that have mixed entry requirements but, in general, one can enter other countries reasonbly easily. The top left cluster represents welcoming countries whose citizens face strict entry requirements. 
+The histogram of the host and guest score plot hints at three major types of mutual relationships. Agglomerate of countries in the upper right corner indicates mutually restricted entry criteria. The bottom middle region of the graph groups countries that have mixed entry requirements but, in general, one can enter other countries reasonably easily. The top left cluster represents welcoming countries whose citizens face strict entry requirements. 
 
 ### Distribution of requirements
 
@@ -646,7 +648,7 @@ pg = pg / pg.sum(axis = 1)[:, None]
 
 The distributions for Azerbaijan, Central African Republic, Cameroon, Cape Verde, Bhutan, DR Congo, Belgium and The Netherlands are show below. It is readily observed the first six countries are easier to travel from as to how much paperwork is needed compared to the last two ones. A question then naturally arises whether are there groups of countries of similar requirement patterns?
 
-![png]({{"/assets/images/visas/output_61_0.png"}})
+![png]({{"/assets/visas/images/output_61_0.png"}})
 
 
 As a start, we can now easily figure out which country has the most polar exit requirements. The term 'polar' means separated bimodal distribution:
@@ -655,7 +657,7 @@ As a start, we can now easily figure out which country has the most polar exit r
 * their probabilities are close to each other: $p_{g}(i)_{k} \approx p_{g}(i)_{l}$
 * their separation is larger than half of the cardinality of the categories: $|k - l| \geq \frac{|C|}{2}$
 
-A limiting case is where two categories have 0.5 and 0.5 probabilties. Based on the previous plots these categories are likely to be _visa free_, _visa on arrival_ and _visa required_.
+A limiting case is where two categories have 0.5 and 0.5 probabilities. Based on the previous plots these categories are likely to be _visa free_, _visa on arrival_ and _visa required_.
 
 
 ```python
@@ -667,7 +669,7 @@ overlap = np.linalg.norm(pg[:,None,:] - mask, axis = 2)
 bimodals = np.array([np.argsort(x)[:3] for x in overlap.T])
 ```
 
-![png]({{"/assets/images/visas/output_64_0.png"}})
+![png]({{"/assets/visas/images/output_64_0.png"}})
 
 Each row of the plot above shows the three most polar distribution of requirements for the _via free_ - _visa required_, _visa free_ - _visa on arrival_ and _visa on arrival_ - _visa required_ pairings.  
 
@@ -682,7 +684,7 @@ $$
 ```python
 dist_mat = scd.squareform(scd.pdist(pg))
 ```
-![png]({{"/assets/images/visas/output_68_0.png"}})
+![png]({{"/assets/visas/images/output_68_0.png"}})
 
 
 If  there are $n$ clusters of similar $P_{g}$-s, then the maximum number of peaks in the distance plot is 
@@ -706,7 +708,7 @@ There are about between 4 and  7 peaks in the plot above. This implies the numbe
 Z = linkage(pg, 'ward')
 ```
 
-![png]({{"/assets/images/visas/output_71_0.png"}})
+![png]({{"/assets/visas/images/output_71_0.png"}})
 
 In the plot above each point corresponds to a merge. The merge height is also an upper bound for the intra cluster variance of the joined clusters. We therefore use method \#1 to determine the number of clusters. The largest gap is between the penultimate point and the one before it, thus we will have three clusters. 
 
@@ -730,12 +732,12 @@ stds = np.array([np.std(pg[_v], axis = 0) for _k, _v in clustaz.items()])
 
 The three groups correspond to the most welcomed ones, _e.g._ as those in the EU, welcomed ones, such as many Asian and African countries. The third groups consists of countries with strained international relationships (Armenia) or ones with serious internal conflicts (Syria).  
 
-![png]({{"/assets/images/visas/output_81_0.png"}})
+![png]({{"/assets/visas/images/output_81_0.png"}})
 
 
 The dendrogram shows these clusters and the base distributions from which the distances were calculated, in anticlockwise order.
 
-![png]({{"/assets/images/visas/output_164_0.png"}})
+![png]({{"/assets/visas/images/output_164_0.png"}})
 
 ## Mutual requirements
 
@@ -786,7 +788,7 @@ ax.set_xlabel("Req(i -->j)"); ax.set_ylabel("Req(j -->i)");
 plt.show()
 ```
 
-![png]({{"/assets/images/visas/output_86_0.png"}})
+![png]({{"/assets/visas/images/output_86_0.png"}})
 
 
 The matrix is not symmetric meaning that there are pairs of countries which demand different travel documents depending on the direction of travel. The most popular mutual requirements are 
@@ -869,14 +871,14 @@ print(keep_idcs)
 
 Only six components are retained out of sixty four. It is inetersting to see that most of the linear relationships involve the _visa required_ restriction. For example, the first component (top left corner) indicates that a pair of countries either has (_visa required_, _visa on arrival_) **xor** (_visa required_, _visa required_) mutual requirements.
 
-![png]({{"/assets/images/visas/output_96_0.png"}})
+![png]({{"/assets/visas/images/output_96_0.png"}})
 
 
 ### Clustering
 
 It would be interesting to see whether there are clusters formed around certain reciprocity patterns. First of all, a dissimilarity measure is needed. Taking the $L_{2}$ overlap of  the reciprocity distributions can be misleading. For example, consider the following three distributions below:
 
-![png]({{"/assets/images/visas/output_98_0.png"}})
+![png]({{"/assets/visas/images/output_98_0.png"}})
 
 
 The $L_{p}$ distances between any two distributions are equal. However, we feel that **(1)** is closer to **(2)** than  to **(3)** for _visa free_ is closer to _ETA_ than to _visa required_. In general, when comparing probability distributions over ordered categorical variables it is advantageous to use a distance that represets the underlying ordering. One such function is the [_earth mover's distance_](https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/rubner-jcviu-00.pdf) (EMD) or [_Wasserstein metric_](https://en.wikipedia.org/wiki/Wasserstein_metric). It is the minimum work required to move one distribution to match and other one, in a nutshell. Before we calculate EMDs for the countries two notes are in order:
@@ -920,7 +922,7 @@ $$
 \big(i \leftarrow \lfloor \frac{m} {n_{c}} \rfloor, j \leftarrow \text{mod}(m, n_{c})\big) \text{ and } \big(k \leftarrow \lfloor \frac{n} {n_{c}} \rfloor, l \leftarrow \text{mod}(n, n_{c})\big)
 $$
 
-![png]({{"/assets/images/visas/output_103_0.png"}})
+![png]({{"/assets/visas/images/output_103_0.png"}})
 
 
 We can now calculate the EMD, `emd`, for all pairs of countries using the [`Python Optimal Transport` module](http://pot.readthedocs.io/en/stable/index.html). We also calculate the Euclidean distance, `l2d`, for comparison.
@@ -934,7 +936,7 @@ l2d = scd.squareform(scd.pdist(cnt_recip_mat))
 
 It is readily seen from the joint plot below that the earth mover's distance is usually larger than the ordinary $L_{2}$ distance. This is due to taking the distance between the ordered categories into account. 
 
-![png]({{"/assets/images/visas/output_107_0.png"}})
+![png]({{"/assets/visas/images/output_107_0.png"}})
 
 
 Two hierarchical clusterings are generated, one for EMD and one for $L_{2}$ distance.
@@ -947,7 +949,7 @@ Z_l2d = linkage(l2d, 'ward')
 
 The EMD is an order of magnitude larger than the $L_{2}$ distance, due to the underlying ground distance. The distribution of merge heights also differ. The $L_{2}$ metric generates are more branched structure at at larger heights.
 
-![png]({{"/assets/images/visas/output_111_0.png"}})
+![png]({{"/assets/visas/images/output_111_0.png"}})
 
 
 The labels in the top forty clusters are compared with respect to the induced [Fowlkes-Mallows score](https://en.wikipedia.org/wiki/Fowlkes%E2%80%93Mallows_index). The closer its value to unit, the more labels can be found grouped in the same clusters in the two hierarchy.
@@ -960,7 +962,7 @@ scores = list(fowlkes_mallows_score(*lp) for lp in label_pairs)
 
 The score is unit when all countries are in a single cluster as expected. It plummets just below 0.6 indicating the topmost merge partitions the countries quite differently. The next lower merges increase the value of the score, so that the countries within the top two clusters are grouped into similar clusters. This jaggedy behaviour is due to the EMD and $L_{2}$ distance being correlated. In case of two independent partitionings, the score is expected to monotonically decrease.
 
-![png]({{"/assets/images/visas/output_115_0.png"}})
+![png]({{"/assets/visas/images/output_115_0.png"}})
 
 
 Back to the EMD clustering: where to cut the dendrogam? For there is no apparent gap (or elbow) in the succession of merge heights, the silhouette method will be invoked.
@@ -978,7 +980,7 @@ print("Silhouette maximum at number of clusters: {0}".format(n_clusters))
     Silhouette maximum at number of clusters: 5
     
 
-The tree thus will be cut to yield five clusters. The means of the reciprocity matrices within each cluster are shown below. The first three roughly correspons to the (_visa required, visa on arrival_), (_visa required, visa requiredl_), (_visa free_, _visa free_) relationships. The fourth group collates countries that are less welcoming than welcomed. The fifth represents a group of countries which either have mutual _visa free_ arrangements or being demanded _visa required_. 
+The tree thus will be cut to yield five clusters. The means of the reciprocity matrices within each cluster are shown below. The first three roughly corresponds to the (_visa required, visa on arrival_), (_visa required, visa requiredl_), (_visa free_, _visa free_) relationships. The fourth group collates countries that are less welcoming than welcomed. The fifth represents a group of countries which either have mutual _visa free_ arrangements or being demanded _visa required_. 
 
 
 ```python
@@ -986,27 +988,27 @@ clustaz_ = split_at_n_top(Z_emd, 5)
 means_ = np.array([np.mean(cnt_recip_mat[_v], axis = 0) for _k, _v in clustaz_.items()])
 ```
 
-![png]({{"/assets/images/visas/output_120_0.png"}})
+![png]({{"/assets/visas/images/output_120_0.png"}})
 
 The dendrogram of the five clusters is shown below in anticloskwise order.
 
-![png]({{"/assets/images/visas/output_165_0.png"}})
+![png]({{"/assets/visas/images/output_165_0.png"}})
 
 ### Asymmetry 
 
-Next, we calcaulte the conditional distribution of requirements with respect to the exit requirements. This is easily achieved by normalising each row of the overall reciprocity matrix.
+Next, we calculate the conditional distribution of requirements with respect to the exit requirements. This is easily achieved by normalising each row of the overall reciprocity matrix.
 
 
 ```python
 p_recip_mat = recip_mat / np.sum(recip_mat, axis = 0)
 ```
 
-![png]({{"/assets/images/visas/output_125_0.png"}})
+![png]({{"/assets/visas/images/output_125_0.png"}})
 
 
-From these probability plots one can deduce that _visa free_ and _visa on arrival_ requirements are the mostly reciprocated ($p_{0,0}= 0.7, p_{7,7} = 0.55$). Countries also tend to mutally bar each other's citizen's ($p_{8,8} = 0.95$). At least there is something they agree on. 
+From these probability plots one can deduce that _visa free_ and _visa on arrival_ requirements are the mostly reciprocated ($p_{0,0}= 0.7, p_{7,7} = 0.55$). Countries also tend to mutually bar each other's citizen's ($p_{8,8} = 0.95$). At least there is something they agree on. 
 
-#### Quatifying reciprocity of a country
+#### Quantifying reciprocity
 
 To see much a country's entry requirements reciprocated, the overlap between host $v_{i,*}$ and guest $v_{*,i}$ vectors is calculated.
 
@@ -1014,13 +1016,13 @@ $$
 A_{us}(i) = \frac{\sum\limits_{k} \delta(v_{ik},v_{ki})}{n_{g}}
 $$
 
-A more sophisticated indicator is the count the sing of the differences, $A_{sg}$. Negative values are assigned to counries that are more welcoming than welcomed.
+A more sophisticated indicator is the count the sing of the differences, $A_{sg}$. Negative values are assigned to countries that are more welcoming than welcomed.
 
 $$
 A_{sg} = \frac{\sum\limits_{k} \text{sign}(v_{ik} - v_{ki}) } {n_{g}}
 $$
 
-A third measure of asymetry is the signed sum of differences, $A_{ss}$. However, the assignment of the actual numerical values to the categories, apart from being ordered, is somewhat accidental.
+A third measure of asymmetry is the signed sum of differences, $A_{ss}$. However, the assignment of the actual numerical values to the categories, apart from being ordered, is somewhat accidental.
 
 $$
 A_{ss} = \frac{\sum\limits_{k} v_{ik} - v_{ki} } {n_{g} \cdot (\max(C) - \min(c)) }
@@ -1130,14 +1132,14 @@ df_cnt_stats.sort_values(by=['signed'])[['name', 'signed', 'unsigned']].tail(3)
 
 
 
-The sorted scores are shown below. The flatter regions indicate that numerious countries have similar asymetric relations. However, looking at just $A_{us}$ and $A_{sg}$ does tell us whether the asymmetries of different signs compensate each other or a country has symmetric relationships.
+The sorted scores are shown below. The flatter regions indicate that numerous countries have similar asymmetric relations. However, looking at just $A_{us}$ and $A_{sg}$ does tell us whether the asymmetries of different signs compensate each other or a country has symmetric relationships.
 
-![png]({{"/assets/images/visas/output_134_0.png"}})
+![png]({{"/assets/visas/images/output_134_0.png"}})
 
 
 A joint plot of $A_{us}$ and $A_{sg}$ can resolve this issue.  The more asymmetric a country is  the more likely it is more less welcomed then welcoming. These countries constitute top left cluster. If a country has symmetric relationships, ($A_{us}$) close to zero, it is likely to be less welcoming than welcomed according to the grouping in the bottom right corner.
 
-![png]({{"/assets/images/visas/output_136_0.png"}})
+![png]({{"/assets/visas/images/output_136_0.png"}})
 
 
 ### Blocks
@@ -1145,7 +1147,7 @@ A joint plot of $A_{us}$ and $A_{sg}$ can resolve this issue.  The more asymmetr
 
 It is interesting to see whether there are groups of countries which have stronger ties among themselves than with others. An extreme example is a group where all entry requirements are _visa free_ in both directions.
 
-To this end consider the directted graph where the vertices are the countries; each of them connected by two directed edges corresponding to the entry requirements. We then color the edges according to their types _e.g._ Holy See and Italy are connected by two antiparallel _blue_ edges. Finding a group of identical entry requirements is then equvalent to finding the n-cliques containing only edges of the same colour.
+To this end consider the directed graph where the vertices are the countries; each of them connected by two directed edges corresponding to the entry requirements. We then color the edges according to their types _e.g._ Holy See and Italy are connected by two antiparallel _blue_ edges. Finding a group of identical entry requirements is then equivalent to finding the n-cliques containing only edges of the same colour.
 
 This can be done in the following way:
 
@@ -1179,17 +1181,17 @@ cliques_vf = find_colour_max_cliques(V,0)
 
 The blocks are then printed on a circular layout where each node correspond to a country, and each edge represents a mutual _visa free_ requirement. Largest one consists of the Schengen/EEA/European microstates and numerous South American countries. Several Central American (plus a few African) states constitute the second largest group. The ECOWAS member states made up the third block. In general, countries of geopolitical proximity tend to form cliques. However, all connections in a clique should be _visa free_ therefore even one asymmetric relationship can remove an otherwise perfectly connected country. A fine example is Russia, which requires visa from some of the Central Asian republics, therefore it is cannot be in the mainly post Soviet fourth block.
 
-![png]({{"/assets/images/visas/output_146_0.png"}})
+![png]({{"/assets/visas/images/output_146_0.png"}})
 
 
 The original matrix, $V$ **(1)** shows no apparent structure. When countries are reordered, the blocks appear along the diagonal. Off-diagonal blocks can also be spotted where the requirements are dominated by a certain category. This is amplified is the mode of each block is plotted **(c)**. The largest _visa free_ clique comprises European and South American countries. Again, it is easier to travel from than to travel to these countries as the leftmost and topmost bands suggests.
 
-![png]({{"/assets/images/visas/output_152_0.png"}})
+![png]({{"/assets/visas/images/output_152_0.png"}})
 
 
 ### Requirement similarity
 
-Finally, we compare countries by their country specific requirements. Again, we start with defining a distance. The most striaghtforward choice is the simple matching coefficient, $d_{smc}$ excluding the host and guest countries:
+Finally, we compare countries by their country specific requirements. Again, we start with defining a distance. The most straightforward choice is the simple matching coefficient, $d_{smc}$ excluding the host and guest countries:
 
 $$
 d_{smc}(ij) = \sum\limits_{k\notin \{i,j\}} \delta ( v_{ik}, v_{jk}) \, .
@@ -1252,10 +1254,6 @@ scores = np.fromiter(score_gen, dtype = np.float)
 
 Again a geopolitical segmentation is readily observed most strikingly in the cases of post Soviet and African states.
 
-![png](output_164_0.png)
-
-
-![png](output_165_0.png)
 
 ![png]({{"/assets/images/visas/output_166_0.png"}})
 
