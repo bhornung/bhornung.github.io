@@ -669,7 +669,7 @@ overlap = np.linalg.norm(pg[:,None,:] - mask, axis = 2)
 bimodals = np.array([np.argsort(x)[:3] for x in overlap.T])
 ```
 
-![png]({{"/assets/visas/images/output_64_0.png"}}){:height="646px" width="800px"}
+![png]({{"/assets/visas/images/output_64_0.png"}}){:height="415px" width="600px"}
 
 Each row of the plot above shows the three most polar distribution of requirements for the _via free_ - _visa required_, _visa free_ - _visa on arrival_ and _visa on arrival_ - _visa required_ pairings.  
 
@@ -684,7 +684,7 @@ $$
 ```python
 dist_mat = scd.squareform(scd.pdist(pg))
 ```
-![png]({{"/assets/visas/images/output_68_0.png"}}){:height="355px" width="800px"}
+![png]({{"/assets/visas/images/output_68_0.png"}}){:height="180px" width="400px"}
 
 
 If  there are $n$ clusters of similar $P_{g}$-s, then the maximum number of peaks in the distance plot is 
@@ -708,7 +708,7 @@ There are about between 4 and  7 peaks in the plot above. This implies the numbe
 Z = linkage(pg, 'ward')
 ```
 
-![png]({{"/assets/visas/images/output_71_0.png"}})
+![png]({{"/assets/visas/images/output_71_0.png"}}){:height="193px" width="263px"}
 
 In the plot above each point corresponds to a merge. The merge height is also an upper bound for the intra cluster variance of the joined clusters. We therefore use method \#1 to determine the number of clusters. The largest gap is between the penultimate point and the one before it, thus we will have three clusters. 
 
@@ -737,7 +737,7 @@ The three groups correspond to the most welcomed ones, _e.g._ as those in the EU
 
 The dendrogram shows these clusters and the base distributions from which the distances were calculated, in anticlockwise order.
 
-![png]({{"/assets/visas/images/output_164_0.png"}}){:height="800px" width="800px"}
+![png]({{"/assets/visas/images/output_164_0.png"}}){:height="900px" width="900px"}
 
 ## Mutual requirements
 
@@ -878,7 +878,7 @@ Only six components are retained out of sixty four. It is inetersting to see tha
 
 It would be interesting to see whether there are clusters formed around certain reciprocity patterns. First of all, a dissimilarity measure is needed. Taking the $L_{2}$ overlap of  the reciprocity distributions can be misleading. For example, consider the following three distributions below:
 
-![png]({{"/assets/visas/images/output_98_0.png"}}){:height="346px" width="800px"}
+![png]({{"/assets/visas/images/output_98_0.png"}}){:height="259px" width="600px"}
 
 
 The $L_{p}$ distances between any two distributions are equal. However, we feel that **(1)** is closer to **(2)** than  to **(3)** for _visa free_ is closer to _ETA_ than to _visa required_. In general, when comparing probability distributions over ordered categorical variables it is advantageous to use a distance that represets the underlying ordering. One such function is the [_earth mover's distance_](https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/rubner-jcviu-00.pdf) (EMD) or [_Wasserstein metric_](https://en.wikipedia.org/wiki/Wasserstein_metric). It is the minimum work required to move one distribution to match and other one, in a nutshell. Before we calculate EMDs for the countries two notes are in order:
@@ -992,7 +992,7 @@ means_ = np.array([np.mean(cnt_recip_mat[_v], axis = 0) for _k, _v in clustaz_.i
 
 The dendrogram of the five clusters is shown below in anticloskwise order.
 
-![png]({{"/assets/visas/images/output_165_0.png"}}){:height="800px" width="800px"}
+![png]({{"/assets/visas/images/output_165_0.png"}}){:height="900px" width="900px"}
 
 ### Asymmetry 
 
@@ -1181,7 +1181,7 @@ cliques_vf = find_colour_max_cliques(V,0)
 
 The blocks are then printed on a circular layout where each node correspond to a country, and each edge represents a mutual _visa free_ requirement. Largest one consists of the Schengen/EEA/European microstates and numerous South American countries. Several Central American (plus a few African) states constitute the second largest group. The ECOWAS member states made up the third block. In general, countries of geopolitical proximity tend to form cliques. However, all connections in a clique should be _visa free_ therefore even one asymmetric relationship can remove an otherwise perfectly connected country. A fine example is Russia, which requires visa from some of the Central Asian republics, therefore it is cannot be in the mainly post Soviet fourth block.
 
-![png]({{"/assets/visas/images/output_146_0.png"}}){:height="273px" width="800px"}
+![png]({{"/assets/visas/images/output_146_0.png"}}){:height="900px" width="900px"}
 
 
 The original matrix, $V$ **(1)** shows no apparent structure. When countries are reordered, the blocks appear along the diagonal. Off-diagonal blocks can also be spotted where the requirements are dominated by a certain category. This is amplified is the mode of each block is plotted **(c)**. The largest _visa free_ clique comprises European and South American countries. Again, it is easier to travel from than to travel to these countries as the leftmost and topmost bands suggests.
@@ -1237,7 +1237,7 @@ Z_l1m = linkage(d_l1m, 'ward')
 The histogram of the distances suggest there are at least three clusters (3\*2 / 2). 
 
 
-![png]({{"/assets/images/visas/output_157_0.png"}})
+![png]({{"/assets/visas/images/output_157_0.png"}}){:height="140px" width="220px"}
 
 
 The silhouette index assumes it maximum at the topmost merge. However, we choose to add one more split which justified by the density plot above and the large gap between the second and third merges (between 3 and 4 clusters).
@@ -1249,11 +1249,11 @@ score_gen = (silhouette_score(d_l1m, label, metric = 'precomputed') for label in
 scores = np.fromiter(score_gen, dtype = np.float)
 ```
 
-![png]({{"/assets/images/visas/output_160_0.png"}})
+![png]({{"/assets/visas/images/output_160_0.png"}})
 
 
 Again a geopolitical segmentation is readily observed most strikingly in the cases of post Soviet and African states.
 
 
-![png]({{"/assets/images/visas/output_166_0.png"}}){:height="800px" width="800px"}
+![png]({{"/assets/visas/images/output_166_0.png"}}){:height="900px" width="900px"}
 
