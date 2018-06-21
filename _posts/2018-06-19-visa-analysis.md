@@ -10,7 +10,7 @@ We are going to explore the entry requirements to visit a country across the glo
 
 
 ## Preliminaries
-### Module
+### Modules
 The following modules and tools will be needed:
 
 
@@ -763,29 +763,6 @@ recip_mat = np.zeros((nc, nc), dtype = np.float)                                
 for idcs, count_ in recip_histo.items():
     recip_mat[idcs] = count_ 
 recip_mat = recip_mat / np.sum(recip_mat)
-```
-
-
-```python
-# === T O  H I D E
-
-fig, ax = plt.subplots(1,1)
-fig.set_size_inches(8,8)
-im = ax.imshow(recip_mat, cmap = 'Greens', norm = LogNorm(vmin = 0.0001))
-
-ax.set_xticks([-0.5, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5])
-ax.set_yticks([-0.5, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5])
-
-ax.set_xticklabels(category_lookup.values(), rotation = -90)
-ax.set_yticklabels(category_lookup.values())
-
-ax.xaxis.grid(color='black', linestyle = '--', linewidth = 0.5)
-ax.yaxis.grid(color='black', linestyle = '--', linewidth = 0.5)
-    
-cbar_ax = fig.add_axes([0.95, 0.15, 0.05, 0.7])
-fig.colorbar(im, cax = cbar_ax)
-ax.set_xlabel("Req(i -->j)"); ax.set_ylabel("Req(j -->i)");
-plt.show()
 ```
 
 ![png]({{"/assets/visas/images/output_86_0.png"}}){:height="426px" width="500px"}
