@@ -230,6 +230,7 @@ def calculate_pattern_hash(pattern_spec, arrlen):
 ##### Decomposition
 
 The decomposition of a segmentation is implemented in the `translate_segmentation` function.
+
 $$
 \begin{eqnarray}
 &   &  \textbf{Algorithm:} \, \texttt{Translate} \\
