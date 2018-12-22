@@ -9,7 +9,6 @@ categories: python
 In this blog post, we are going to investigate a possible way to speed up segmentation of time series. A time series is an ordered sequence of elements. A segment is a region of the time series where the observations are similar according to some measure. The aim is to identify these regions.
 
 The raw notebook can be found [here](https://github.com/bhornung/bhornung.github.io/blob/master/assets/hashing-time-series/notebook/hasing-time-series.ipynb).
-.
 
 ## Preliminaries
 
