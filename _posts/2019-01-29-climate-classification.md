@@ -15,7 +15,7 @@ The raw notebook can be found [here](https://github.com/bhornung/bhornung.github
 
 ### Source
 
-The temperature and precipitation data were obtained from the [WorldClim - Global Climate Data] (http://www.worldclim.org/current) database. The resolution is 10' on an equidistant latitude and longitude grid. Please note, this leads to increasing weight of points advancing towards the polar regions. The Koppen classification can be found at WORLD MAPS OF [Koppen--Geiger Climate Classification page](http://koeppen-geiger.vu-wien.ac.at/) of Universitat Wien. The data cover most of the landmass save for the Antarctica.
+The temperature and precipitation data were obtained from the [WorldClim - Global Climate Data](http://www.worldclim.org/current) database. The resolution is 10' on an equidistant latitude and longitude grid. Please note, this leads to increasing weight of points advancing towards the polar regions. The Koppen classification can be found at WORLD MAPS OF [Koppen--Geiger Climate Classification page](http://koeppen-geiger.vu-wien.ac.at/) of Universitat Wien. The data cover most of the landmass save for the Antarctica.
 
 The two datasets were projected onto a common grid and saved to a csv store.
 
@@ -25,7 +25,7 @@ The loaded from the store have roughly 64,00 points:
 
 
 ```python
-path_to_store = r'C:\Users\Balazs\source\repos\Weather\data\climate\temperature-precipitation-cls.csv'
+path_to_store = r'path/to/temperature-precipitation-cls.csv'
 df = pd.read_csv(path_to_store, index_col = 0 )
 
 print("Number of records: {0}".format(len(df)))
