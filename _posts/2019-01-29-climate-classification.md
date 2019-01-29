@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Clustering GDPs"
+title:  "Is it Cfa or Cfb?"
 date:   2019-01-29 21:20:06 +0000
 categories: python
 ---
