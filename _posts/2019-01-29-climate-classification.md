@@ -700,7 +700,7 @@ These are really strict requirements which are not granted to have met.
 
 ### Structure of data
 
-It is high time to delve into the structure of the data deeper. The projections of the error ellipses onto the 2D hyperplanes spanned by the first six principal components are shown in the figure below. The labels in the top left corner are the indices of the hyperplanes, 0 being the largest. Only the first most populous classes are shown for sake of clarity. It is clear, the distributions are far from symmetric. Also there is a considerable amount of overlap between various classes.
+It is high time to delve into the structure of the data deeper. The projections of the error ellipses onto the 2D hyperplanes spanned by the first six principal components are shown in the figure below. The labels in the top left corner are the indices of the hyperplanes, 0 being the largest. Only the first most populous classes are shown for sake of clarity. Each colour corresponds to a class. It is clear, the distributions are far from symmetric. Also there is a considerable amount of overlap between various classes.
 
 
 ![png]({{"/assets/climate-classification/images/output_43_0.png"}})
