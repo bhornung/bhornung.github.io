@@ -33,11 +33,6 @@ All features in a set should undergo identical transformation to preserve the re
 
 
 ```python
-import numpy as np
-```
-
-
-```python
 def create_flat_transformer(transformer):
     """
     Wrapper to perform the transformation on the flattened input array to 1D
@@ -287,14 +282,7 @@ Below a slim manifestation of such a function, `model_builder` is defined. The s
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
-```
 
-    C:\Users\hornu\AppData\Local\Continuum\anaconda3\lib\site-packages\h5py\__init__.py:72: UserWarning: h5py is running against HDF5 1.10.2 when it was built against 1.10.3, this may cause problems
-      '{0}.{1}.{2}'.format(*version.hdf5_built_version_tuple)
-    
-
-
-```python
 def model_builder(layers = [[10, 'relu'], [10, 'softmax']]):
     """
     Mock neural network buider.
@@ -417,7 +405,7 @@ The data are then loaded.
 
 
 ```python
-path_to_db = r'C:\Users\hornu\OneDrive\Documents\personal\balazs-personal\balazs-personal\repos\Weather\data\climate\temperature-precipitation-cls.csv'
+path_to_db = r'path/to/temperature-precipitation-cls.csv'
 X, labels = data_loader(path_to_db)
 ```
 
