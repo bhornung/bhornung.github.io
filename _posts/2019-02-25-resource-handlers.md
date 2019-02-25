@@ -11,7 +11,7 @@ We create a source agnostic interface that can feed data to a data science pipel
 
 ## Motivation
 
-Data can be loaded from a variety of sources, files on hard drive, from a database, as a stream from a sensor. Each of these resources require a different set of rules to extract the data from them. When constructing a data pipeline, we can easily end up writing custom handler, each being slightly different, depending on the project we are working on. Even worse, the subsequent stages of the data pipeline would explicitly depend on the specifications of the handler. 
+Data can be loaded from a variety of sources, files on hard drive, from a database, as a stream from a sensor. Each of these resources requires a different set of rules to extract the data from them. When constructing a data pipeline, we can easily end up writing custom handler, each being slightly different, depending on the project we are working on. Even worse, the subsequent stages of the data pipeline would explicitly depend on the specifications of the handler. 
 
 A common solution is to write interfaces with highly abstracted functionalities, where an interface
 * belongs to a program unit that performs a generic task _i.e._ consuming the contents of the resource
