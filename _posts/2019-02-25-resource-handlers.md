@@ -6,7 +6,7 @@ categories: python
 ---
 
 
-We create a source agnostic interface that yields data to a pipeline.
+We create a source agnostic interface that can feed data to a data science pipeline.
 
 
 ## Motivation
@@ -463,8 +463,11 @@ class BufferedResourceHandler(ResourceHandlerBaseclass2):
         return super().get_all()
     
     def close_resource(self):
+        """
+        Detaches from stream.
+        """
         
-        self._resource = None 
+        self._resource = (x for x in [])
 ```
 
 
