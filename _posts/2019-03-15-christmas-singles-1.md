@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Analysis of UK singles charts. Part 1"
+title:  "Analysis of UK Christmas singles. Part 1"
 date:   2019-03-15 12:40:32 +0000
 categories: python
 ---
@@ -167,7 +167,7 @@ The overlap is plotted below.
 * It is worth noting, the apparent lifetime of singles radically increases after 2000. We will investigate this phenomenon elsewhere.
 
 
-![png]({{"/assets/christmas-singles-1/images/output_10_0.png"}})
+![png]({{"/assets/christmas-singles-1/images/output_10_1.png"}})
 
 
 ### Characteristics of recurrent Christmas singles
